@@ -29,7 +29,7 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
 
     public UserDto saveUser(CreateUserDto createUserDto) {
-        if( userRepository.existUserByEmail( createUserDto.email() ) ){
+        if( userRepository.existsByEmail( createUserDto.email() ) ){
             throw new AppException( "ya existe un usuario creado con ese email", HttpStatus.BAD_REQUEST );
         }
 
