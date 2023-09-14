@@ -19,12 +19,13 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 public class SecurityConfig {
 
     private final AuthenticationProvider authenticationProvider;
-
     private final UserAuthProvider userAuthProvider;
+    private final UserEntryPoint userEntryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain( HttpSecurity http ) throws Exception {
         return http.csrf( AbstractHttpConfigurer::disable )
+                .exceptionHandling( customer -> customer.authenticationEntryPoint( userEntryPoint ))
                 .sessionManagement( session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) )
                 .authorizeHttpRequests( request -> {
                     request.requestMatchers( HttpMethod.POST,
