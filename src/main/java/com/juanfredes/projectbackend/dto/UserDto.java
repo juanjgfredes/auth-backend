@@ -1,17 +1,13 @@
 package com.juanfredes.projectbackend.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.juanfredes.projectbackend.entities.ERol;
-import com.juanfredes.projectbackend.entities.User;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-
-import java.util.Objects;
 import java.util.Set;
+
 
 @Builder
 @AllArgsConstructor
@@ -23,6 +19,5 @@ public class UserDto {
     private String email;
     private Boolean isActive;
     private Set<ERol> roles;
-    private String token;
 
 }

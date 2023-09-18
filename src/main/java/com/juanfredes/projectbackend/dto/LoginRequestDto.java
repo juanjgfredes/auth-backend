@@ -3,9 +3,8 @@ package com.juanfredes.projectbackend.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 
-public record LoginDto(
+public record LoginRequestDto(
 
         @Email(message = "el email tiene un formato erroneo")
         String email,
