@@ -1,6 +1,5 @@
 package com.juanfredes.projectbackend.dto;
 
-import com.juanfredes.projectbackend.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

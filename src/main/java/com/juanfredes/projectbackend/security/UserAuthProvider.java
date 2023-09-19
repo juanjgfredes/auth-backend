@@ -4,7 +4,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.juanfredes.projectbackend.dto.UserDto;
 import com.juanfredes.projectbackend.entities.ERol;
 import com.juanfredes.projectbackend.entities.User;
 import com.juanfredes.projectbackend.exceptions.AppException;
