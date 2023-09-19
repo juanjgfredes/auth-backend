@@ -23,22 +23,22 @@ public class UserEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 
-        ErrorDto errorDto = new ErrorDto();
+        ErrorDto errorDto;
         response.setStatus( HttpServletResponse.SC_UNAUTHORIZED );
         response.setHeader( HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE );
 
         String endpoint = request.getRequestURI();
         if( isLoginEndpoint(endpoint) ){
-            errorDto.add("mensaje", "la contraseña ingresada es incorrecta");
+            errorDto = new ErrorDto( "la contraseña ingresada es incorrecta" );
             OBJECT_MAPPER.writeValue( response.getOutputStream(), errorDto );
             return;
         }
 
         String token = request.getHeader( HttpHeaders.AUTHORIZATION );
         if( istokenNullOrEmty( token ) ){
-            errorDto.add( "mensaje", "no ha ingresado ningún token" );
+            errorDto = new ErrorDto( "no ha ingresado ningún token" );
         } else {
-            errorDto.add( "mensaje", "el token ingresado es incorrecto" );
+            errorDto = new ErrorDto( "el token ingresado es incorrecto" );
         }
         OBJECT_MAPPER.writeValue( response.getOutputStream(), errorDto );
 

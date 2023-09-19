@@ -5,10 +5,11 @@ import com.juanfredes.projectbackend.exceptions.AppException;
 import com.mongodb.MongoWriteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.util.ArrayList;
 
 @ControllerAdvice
 public class RestExceptionHandler {
@@ -18,7 +19,7 @@ public class RestExceptionHandler {
         String menssage = appEx.getMessage();
         HttpStatus httpStatus = appEx.getHttpStatus();
 
-        ErrorDto errorDto = new ErrorDto( "message", menssage );
+        ErrorDto errorDto = new ErrorDto( menssage );
 
         return ResponseEntity
                 .status( httpStatus )
@@ -27,30 +28,27 @@ public class RestExceptionHandler {
 
     @ExceptionHandler( value =  MethodArgumentNotValidException.class )
     public ResponseEntity<ErrorDto> validationsException( MethodArgumentNotValidException argException ) {
-        ErrorDto errorDto = new ErrorDto();
+        ArrayList<ErrorDto> errores = new ArrayList<>();
 
         argException.getBindingResult().getAllErrors().forEach( err -> {
-            FieldError fieldError = (FieldError) err;
-            String parametorName = fieldError.getField();
-            String messageError = fieldError.getDefaultMessage();
+            String message = err.getDefaultMessage();
 
-            errorDto.add( parametorName, messageError);
+            errores.add( new ErrorDto( message ));
         });
 
         return ResponseEntity
                 .status( HttpStatus.BAD_REQUEST )
-                .body(errorDto );
+                .body( errores.get( 0 ));
     }
 
     @ExceptionHandler( MongoWriteException.class )
     public ResponseEntity<ErrorDto> mongoException( MongoWriteException mongoEx ) {
-        ErrorDto errorDto = new ErrorDto();
 
-        String messageError = switch ( mongoEx.getCode() ) {
+        String message = switch ( mongoEx.getCode() ) {
             case 11000 -> "el email ingresado ya existe";
             default -> mongoEx.getMessage();
         };
-        errorDto.add("message", messageError);
+        ErrorDto errorDto = new ErrorDto( message );
 
         return ResponseEntity
                 .status( HttpStatus.BAD_REQUEST )
