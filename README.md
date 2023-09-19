@@ -12,7 +12,7 @@ Backend de una aplicación basica de autenticación para probar con Angular
 ### Instalación:
 1. Clona el repositorio
    ```
-   git clone https://github.com/JuannFredes/angular-auth-app.git
+   git clone https://github.com/JuannFredes/auth-backend.git
    ```
 2. Estando en la carpeta `auth-backend` en la terminal ejecute el siguiente comando:
    ```
