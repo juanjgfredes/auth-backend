@@ -9,7 +9,7 @@ public record CreateUserDto(
         String name,
         @Email(message = "tiene que tener formato de email")
         String email,
-        @Size(min = 6, message = "la contraseña debe tener minimo 6 caracteres l¡vobo")
+        @Size(min = 6, message = "la contraseña debe tener minimo 6 caracteres")
         String password
 ) {
 }

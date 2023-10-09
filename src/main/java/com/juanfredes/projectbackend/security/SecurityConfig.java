@@ -28,7 +28,8 @@ public class SecurityConfig {
                 .exceptionHandling( customer -> customer.authenticationEntryPoint( userEntryPoint ))
                 .sessionManagement( session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) )
                 .authorizeHttpRequests( request -> {
-                    request.requestMatchers( HttpMethod.POST,
+                    request.requestMatchers(
+                            HttpMethod.POST,
                             "/auth/register",
                             "/auth/login" ).permitAll()
                             .anyRequest().authenticated();

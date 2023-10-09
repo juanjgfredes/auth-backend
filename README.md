@@ -18,11 +18,15 @@ Backend de una aplicación basica de autenticación para probar con Angular
    ```
    docker compose up -d
    ```
-3. Ejecuta el siguiente comando en la terminal para compilar el proyecto
+3. En caso de tener un IDE simplemente corra el proyecto en el archivo:
+   ```
+   ProjectBackendApplication
+   ```
+4. Si no tiene un IDE, Ejecute el siguiente comando en la terminal donde está el proyecto para compilar el proyecto
    ```
    mvn clean package
    ```
-4. Finalmente, para iniciar el proyecto ejecuta
+5. Finalmente, para iniciar el proyecto ejecuta
    ```
    java -jar target/escuela-0.0.1-SNAPSHOT.jar
    ```

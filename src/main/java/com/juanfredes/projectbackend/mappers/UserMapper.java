@@ -11,6 +11,6 @@ public interface UserMapper {
 
     User toUser( CreateUserDto createUserDto );
 
-    @Mapping(target = "token", ignore = true)
+    //@Mapping(target = "token", ignore = true)
     UserDto toUserDto( User user );
 }
